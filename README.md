@@ -1,6 +1,7 @@
-_This package brought to you by [Adventure
-Scientists](https://adventurescientists.org). Read more about [our open source
-policy here](https://siliconally.org/policies/open-source/)._
+_This package was developed by [Silicon Ally](https://siliconally.org) while
+working on a project for  [Adventure Scientists](https://adventurescientists.org).
+Many thanks to Adventure Scientists for supporting [our open source
+mission](https://siliconally.org/policies/open-source/)!_
 
 | :warning: WARNING                                 |
 |:--------------------------------------------------|
@@ -8,17 +9,20 @@ policy here](https://siliconally.org/policies/open-source/)._
 
 # rules_gqlgen
 
-`rules_gqlgen` provides Bazel rules for working with the
+`rules_gqlgen` provides **[bazel](https://bazel.build/) rules** that allow you to
+build [GraphQL](https://graphql.org/) in [GoLang](https://go.dev/).
+
+Under the hood, it generates a GoLang runtime + model using the
 [gqlgen](https://github.com/99designs/gqlgen) GraphQL server + codegen library.
 
 ## Usage
 
 ```bazel
-# In a BUILD.bazel
+# In a BUILD.bazel file
 
 load("@com_siliconally_rules_gqlgen//gqlgen:def.bzl", "gqlgen")
 
-# The below rule generated two library targets, :gql_generated and :gql_model,
+# The rule below generates two library targets, :gql_generated and :gql_model,
 # which correspond to the auto-generated GraphQL glue code and model schema
 # types respectively.
 # The two generated rules would have import paths of
@@ -41,20 +45,4 @@ The `example` directory provides a basic GraphQL schema and server backed by
 bazel run //example
 ```
 
-The server will run on port 8080, you can access the playground at
-`http://localhost:8080/api/playground`, and try requests like:
-
-```graphql
-# Query greetings
-{
-  greetings {
-    message
-    lang
-  }
-}
-
-# Set a name
-mutation {
-  updateName(req:{name:"Moxie"})
-}
-```
+See the the example's README.md for a thorough explanation of what is happening. 
