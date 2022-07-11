@@ -5,7 +5,7 @@ This minimal example demonstrates the functionality of this build rule.
 To run this you'll need to have [bazel](https://bazel.build/) installed,
 and it's also recommended to use [bazelisk](https://github.com/bazelbuild/bazelisk)
 to choose a suitable version of bazel to run. We use [gazelle](https://github.com/bazelbuild/bazel-gazelle)
-to manage GoLang dependencies in bazel, but that isn't strictly nescessary.
+to manage Go dependencies in bazel, but that isn't strictly nescessary.
 
 ## What is happening? 
 
@@ -72,7 +72,7 @@ srv := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{R
 
 ## Playground
 
-When you actually run the generated server, it runs on runs on port 8080, and you can access the playground at
+When you actually run the generated server, it runs on port 8080, and you can access the playground at
 `http://localhost:8080/api/playground`.
 
 ```graphql
@@ -92,8 +92,7 @@ mutation {
 
 ## Tweaking Configuration
 
-You can modify the configuration passed to `gqlgen` by creating a `gqlgen.yml` and passing
-it to the rule.
+Today, you cannot tweak the GQL configuration via a `gqlgen.yml` file (as you can via a vanilla `gqlgen` integration). If this is important to you, or you have specific flags/features in mind that you'd like to contribute, shoot us an email/file a Github Issue.
 
 ## Further Reading
 
