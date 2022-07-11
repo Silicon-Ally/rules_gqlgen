@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euxo pipefail
 
-# Give our input arguments more semantic names, see gqlgen.bzl for more info.
+# Give our input arguments more semantic names, see def.bzl for more info.
 CONFIG="$1"
 OUT_GEN_FILE="$(realpath "$2")"
 OUT_MODELS_FILE="$(realpath "$3")"
