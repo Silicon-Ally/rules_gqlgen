@@ -1,0 +1,16 @@
+input UpdateGreetingRequest {
+  name: String!
+}
+
+type Greeting {
+  message: String!
+  lang: String!
+}
+
+type Query {
+  greetings: [Greeting!]!
+}
+
+type Mutation {
+  updateName(req: UpdateGreetingRequest!): Boolean
+}

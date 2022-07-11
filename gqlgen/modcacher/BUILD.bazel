@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "modcacher_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/Silicon-Ally/rules_gqlgen/gqlgen/modcacher",
+    visibility = ["//visibility:private"],
+    deps = ["@org_golang_x_mod//modfile"],
+)
+
+go_binary(
+    name = "modcacher",
+    embed = [":modcacher_lib"],
+    visibility = ["//visibility:public"],
+)
