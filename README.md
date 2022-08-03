@@ -10,6 +10,8 @@ term.
 
 # rules_gqlgen
 
+[![CI Workflow](https://github.com/Silicon-Ally/rules_gqlgen/actions/workflows/build.yml/badge.svg)](https://github.com/Silicon-Ally/rules_gqlgen/actions?query=branch%3Amain)
+
 `rules_gqlgen` provides **[bazel](https://bazel.build/) rules** that allow you to
 build [GraphQL Servers](https://graphql.org/) in [Go](https://go.dev/).
 
