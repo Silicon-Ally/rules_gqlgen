@@ -143,8 +143,8 @@ def _gqlgen_impl(ctx):
         command = "cp %s %s" % (ctx.file.gosum.path, gosum_file.path),
     )
 
-    out_generated_file = ctx.actions.declare_file("graph/generated/generated.go")
-    out_models_file = ctx.actions.declare_file("graph/model/models_gen.go")
+    out_generated_file = ctx.actions.declare_file("generated/generated.go")
+    out_models_file = ctx.actions.declare_file("model/models_gen.go")
 
     ctx.actions.run(
         inputs = ctx.files.schemas + [
