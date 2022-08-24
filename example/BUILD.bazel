@@ -6,6 +6,8 @@ gqlgen(
     base_importpath = "github.com/Silicon-Ally/rules_gqlgen/example",
     schemas = [":schema.graphqls"],
     visibility = ["//visibility:public"],
+    gomod = "//:go.mod",
+    gosum = "//:go.sum",
 )
 
 go_library(
