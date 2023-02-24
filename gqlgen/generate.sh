@@ -44,7 +44,9 @@ $MODCACHER_PATH go.mod "$GOPATH/src"
 # into a hard file. The file is a symlink here because of how the go_path rule
 # generates the directory in 'copy' mode.
 ASM="external/go_sdk/src/crypto/internal/nistec/p256_asm_table.bin"
-cp --remove-destination `readlink $ASM` "$ASM"
+cp -L "$ASM" "${ASM}.tmp"
+unlink "$ASM"
+mv "${ASM}.tmp" "$ASM"
 
 # See https://github.com/99designs/gqlgen/issues/2081#issuecomment-1126099404
 cat >tools.go <<EOL
