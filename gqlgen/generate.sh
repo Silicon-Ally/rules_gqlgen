@@ -1,18 +1,23 @@
 #!/bin/bash
 set -euo pipefail
 
+# This does not handle the case where $1 is a symlink itself.
+unroll_path() {
+  echo "$( cd -- "$(dirname -- "$1")" ; pwd -P )/$( basename -- "$1")"
+}
+
 # Give our input arguments more semantic names, see def.bzl for more info.
 CONFIG="$1"
-OUT_GEN_FILE="$(realpath "$2")"
-OUT_MODELS_FILE="$(realpath "$3")"
-GQL_ZIP="$(realpath "$4")"
+OUT_GEN_FILE="$(unroll_path "$2")"
+OUT_MODELS_FILE="$(unroll_path "$3")"
+GQL_ZIP="$(unroll_path "$4")"
 CONFIG_DIR="$5"
 GO_MOD="$6"
 GO_SUM="$7"
 MODCACHER_PATH="$8"
 
 TMP_ROOT="$(mktemp -d)"
-export GOROOT="$(realpath "$GOROOT")"
+export GOROOT="$(unroll_path "$GOROOT")"
 export GOPATH="$TMP_ROOT/gopath"
 mkdir "$GOPATH"
 unzip -qq -d "$GOPATH" "$GQL_ZIP"
