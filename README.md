@@ -45,7 +45,18 @@ The `example` directory provides a basic GraphQL schema and server backed by
 `gqlgen`, you can run it with:
 
 ```bash
-bazel run //example
+# example/ is a separate Bazel workspace, so need to enter it first.
+cd example
+# Run the server on port 8080
+bazel run //:example
 ```
 
-See the the example's README.md for a thorough explanation of what is happening. 
+See the the [example's README.md](/example/README.md) for a thorough
+explanation of what is happening.
+
+## Modifying gqlgen.yml
+
+Currently, `rules_gqlgen` does not support the gqlgen configuration file,
+`gqlgen.yml` file, beyond specifying the schema to generate code for. If this
+is important to you, or you have specific features in mind that you'd like
+supported, file an issue.

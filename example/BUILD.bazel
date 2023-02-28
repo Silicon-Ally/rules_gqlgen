@@ -1,10 +1,26 @@
 load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
-load("//gqlgen:def.bzl", "gqlgen")
+load("@rules_gqlgen//gqlgen:def.bzl", "gqlgen")
+load("@bazel_gazelle//:def.bzl", "gazelle")
+
+# gazelle:prefix github.com/Silicon-Ally/rules_gqlgen/example
+# gazelle:resolve go github.com/Silicon-Ally/rules_gqlgen/example/generated //gql_generated
+# gazelle:resolve go github.com/Silicon-Ally/rules_gqlgen/example/model //gql_model
+gazelle(name = "gazelle")
+
+gazelle(
+    name = "gazelle-update-repos",
+    args = [
+        "-from_file=go.mod",
+        "-to_macro=deps.bzl%go_dependencies",
+        "-prune",
+    ],
+    command = "update-repos",
+)
 
 gqlgen(
     name = "gql",
     base_importpath = "github.com/Silicon-Ally/rules_gqlgen/example",
-    schemas = [":schema.graphqls"],
+    schemas = ["//:schema.graphqls"],
     visibility = ["//visibility:public"],
     gomod = "//:go.mod",
     gosum = "//:go.sum",
@@ -16,8 +32,8 @@ go_library(
     importpath = "github.com/Silicon-Ally/rules_gqlgen/example",
     visibility = ["//visibility:private"],
     deps = [
-        "//example:gql_generated",
-        "//example:gql_model",
+        "//:gql_generated",
+        "//:gql_model",
         "@com_github_99designs_gqlgen//graphql/handler",
         "@com_github_99designs_gqlgen//graphql/playground",
     ],
@@ -28,3 +44,11 @@ go_binary(
     embed = [":example_lib"],
     visibility = ["//visibility:public"],
 )
+
+exports_files([
+    "go.mod",
+    "go.sum",
+])
+
+exports_files(["schema.graphqls"])
+

@@ -1,14 +1,5 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-load(
-    "@bazel_gazelle//:deps.bzl",
-    _go_repository = "go_repository",
-)
-
-def go_repository(**kwargs):
-    _maybe(_go_repository, **kwargs)
-
-def gqlgen_dependencies():
-    go_dependencies()
+load("@bazel_gazelle//:deps.bzl", "go_repository")
 
 def go_dependencies():
     go_repository(
@@ -227,8 +218,8 @@ def go_dependencies():
     go_repository(
         name = "org_golang_x_mod",
         importpath = "golang.org/x/mod",
-        sum = "h1:6zppjxzCulZykYSLyVDYbneBfbaBIQPYMevg0bEwv2s=",
-        version = "v0.6.0-dev.0.20220419223038-86c51ed26bb4",
+        sum = "h1:kQgndtyPBW/JIYERgdxfwMYh3AVStj88WQTlNDi2a+o=",
+        version = "v0.6.0-dev.0.20220106191415-9b9b3d81d5e3",
     )
     go_repository(
         name = "org_golang_x_net",
@@ -245,8 +236,8 @@ def go_dependencies():
     go_repository(
         name = "org_golang_x_sys",
         importpath = "golang.org/x/sys",
-        sum = "h1:id054HUawV2/6IGm2IV8KZQjqtwAOo2CYlOToYqa0d0=",
-        version = "v0.0.0-20211019181941-9d821ace8654",
+        sum = "h1:MUK/U/4lj1t1oPg0HfuXDN/Z1wv31ZJ/YcPiGccS4DU=",
+        version = "v0.5.0",
     )
     go_repository(
         name = "org_golang_x_term",

@@ -1,8 +1,6 @@
 load("@bazel_gazelle//:def.bzl", "gazelle")
 
 # gazelle:prefix github.com/Silicon-Ally/rules_gqlgen
-# gazelle:resolve go github.com/Silicon-Ally/rules_gqlgen/example/generated //example:gql_generated
-# gazelle:resolve go github.com/Silicon-Ally/rules_gqlgen/example/model //example:gql_model
 gazelle(name = "gazelle")
 
 gazelle(

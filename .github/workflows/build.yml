@@ -21,4 +21,9 @@ jobs:
         path: "~/.cache/bazel"
         key: bazel
 
-    - run: bazel build //...
+    - name: Build rules_gqlgen
+      run: bazel build //...
+
+    - name: Build example server
+      working-directory: ./example
+      run: bazel build //...
