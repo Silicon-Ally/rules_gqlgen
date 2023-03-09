@@ -117,10 +117,15 @@ def _gqlgen_impl(ctx):
     schemas = []
     path_prefix = ctx.label.package + "/"
     for f in ctx.files.schemas:
-        if not f.path.startswith(path_prefix):
+        if path_prefix == "/":
+            # The gqlgen rule is in the root directory.
+            schemas.append("  - " + f.path)
+        elif f.path.startswith(path_prefix):
+            # The gqlgen rule is in a subdirectory.
+            schema_path = f.path[len(path_prefix):]
+            schemas.append("  - " + schema_path)
+        else:
             fail(".graphqls files must be in a child directory of this one")
-        schema_path = f.path[len(path_prefix):]
-        schemas.append("  - " + schema_path)
 
     ctx.actions.write(
         content = _GQLGEN_YML_TEMPLATE.format(
@@ -162,7 +167,7 @@ def _gqlgen_impl(ctx):
             out_generated_file.path,
             out_models_file.path,
             ctx.file._gqlgen.path,
-            ctx.label.package,
+            ctx.label.package or './',
             gomod_file.path,
             gosum_file.path,
             ctx.executable._modcacher.path,
