@@ -60,3 +60,7 @@ Currently, `rules_gqlgen` does not support the gqlgen configuration file,
 `gqlgen.yml` file, beyond specifying the schema to generate code for. If this
 is important to you, or you have specific features in mind that you'd like
 supported, file an issue.
+
+## Contributing
+
+Contribution guidelines can be found [on our website](https://siliconally.org/oss/contributor-guidelines).
