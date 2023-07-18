@@ -3,3 +3,4 @@ bazel-out
 bazel-testlogs
 bazel-rules_gqlgen
 bazel-example
+rules_gqlgen-*.zip
