@@ -1,5 +1,5 @@
 load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
-load("@rules_gqlgen//gqlgen:def.bzl", "gqlgen")
+load("@com_siliconally_rules_gqlgen//gqlgen:def.bzl", "gqlgen")
 load("@bazel_gazelle//:def.bzl", "gazelle")
 
 # gazelle:prefix github.com/Silicon-Ally/rules_gqlgen/example
