@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euxo pipefail
+set -euo pipefail
 
 # This does not handle the case where $1 is a symlink itself.
 unroll_path() {
