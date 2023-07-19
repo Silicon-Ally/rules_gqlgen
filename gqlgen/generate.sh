@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -euxo pipefail
 
 # This does not handle the case where $1 is a symlink itself.
 unroll_path() {
@@ -15,13 +15,13 @@ CONFIG_DIR="$5"
 GO_MOD="$6"
 GO_SUM="$7"
 MODCACHER_PATH="$8"
+ACTUAL_GOROOT="$9"
 
 TMP_ROOT="$(mktemp -d)"
-export GOROOT="$(unroll_path "$GOROOT")"
+export GOROOT="$(unroll_path "$ACTUAL_GOROOT")"
 export GOPATH="$TMP_ROOT/gopath"
 mkdir "$GOPATH"
 unzip -qq -d "$GOPATH" "$GQL_ZIP"
-export GOCACHE="$TMP_ROOT/go-build"
 export GOCACHE="$TMP_ROOT/go-build"
 # Use our version of the go toolchain, not any local system one.
 export PATH="$GOROOT/bin:$PATH"

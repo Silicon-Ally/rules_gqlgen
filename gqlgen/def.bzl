@@ -157,7 +157,7 @@ def _gqlgen_impl(ctx):
             gomod_file,
             gosum_file,
             ctx.file._gqlgen,
-        ] + go.sdk.srcs + go.sdk.tools + go.sdk.headers,
+        ] + go.sdk.srcs + go.sdk.tools + go.sdk.headers + go.sdk.libs + [go.sdk.go],
         outputs = [
             out_generated_file,
             out_models_file,
@@ -171,6 +171,7 @@ def _gqlgen_impl(ctx):
             gomod_file.path,
             gosum_file.path,
             ctx.executable._modcacher.path,
+            go.sdk.root_file.dirname,
         ],
         progress_message = "Generating GraphQL models and runtime",
         tools = [
